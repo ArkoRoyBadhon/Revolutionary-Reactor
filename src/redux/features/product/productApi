@@ -1,0 +1,15 @@
+import { api } from "../../api/apiSlice";
+
+const productApi = api.injectEndpoints({
+  endpoints: (builder) => ({
+    getAllProducts: builder.query({
+      query: () => ({
+        url: `/products`,
+      }),
+      providesTags: ["products"],
+    }),
+  }),
+});
+
+export const { useGetAllProductsQuery } = productApi;
+
