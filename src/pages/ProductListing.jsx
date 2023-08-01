@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Banner from "../component/Banner";
 import { useGetAllProductsQuery } from "../redux/features/product/productApi";
 import { GiSelfLove } from "react-icons/gi";
@@ -5,6 +6,11 @@ import { IoIosArrowDown } from "react-icons/io";
 
 const ProductListing = () => {
   const { data: productList } = useGetAllProductsQuery();
+  const navigate = useNavigate()
+
+  const handleDetailPage = (id) => {
+    navigate(`/product/${id}`)
+  }
 
   return (
     <>
@@ -67,6 +73,7 @@ const ProductListing = () => {
                   </div>
                   <div className="flex justify-center items-center">
                     <img
+                    onClick={()=> handleDetailPage(product?.id)}
                       src={product?.image}
                       alt="product-img"
                       className="w-60 h-48 p-5"
