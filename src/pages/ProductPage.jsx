@@ -34,6 +34,11 @@ const ProductPage = () => {
               alt="image"
               className="w-20 hover:shadow-md p-3"
             />
+            <img
+              src={data?.image}
+              alt="image"
+              className="w-20 hover:shadow-md p-3"
+            />
           </div>
         </div>
         <div className="w-[50%]">
