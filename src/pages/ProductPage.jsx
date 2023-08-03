@@ -2,10 +2,14 @@ import { useParams } from "react-router-dom";
 import { useGetSingleProductQuery } from "../redux/features/product/productApi";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { SlCalender } from "react-icons/sl";
+import { AiTwotoneStar } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../redux/features/product/productSlice";
 
 const ProductPage = () => {
   const { id } = useParams();
   const { data } = useGetSingleProductQuery(id);
+  const dispatch = useDispatch();
 
   return (
     <div className="max-w-screen-xl mx-auto py-10">
@@ -42,18 +46,21 @@ const ProductPage = () => {
           </p>
           <small>Suggested products with EMI 0% interest</small>
           <br />
+          <div className="flex items-center">
+                      <AiTwotoneStar className="text-orange-400" />
+                      <AiTwotoneStar className="text-orange-400" />
+                      <AiTwotoneStar className="text-orange-400" />
+                      <AiTwotoneStar className="text-orange-400" />
+                      <AiTwotoneStar />
+                      <p>(121)</p>
+                    </div>
 
-          <div className="flex gap-5 my-5">
-            <div className="flex h-fit">
-              <div className="px-5 py-1 bg-[#F5F6F6] hover:bg-gray-200 rounded-l-2xl cursor-pointer">
-                -
-              </div>
-              <div className="px-5 py-1 bg-[#F5F6F6] hover:bg-gray-200 cursor-pointer">
-                1
-              </div>
-              <div className="px-5 py-1 bg-[#F5F6F6] hover:bg-gray-200 rounded-r-2xl cursor-pointer">
-                +
-              </div>
+          <div className="my-5">
+            <div
+              onClick={() => dispatch(addToCart(data))}
+              className=" my-5 rounded-3xl border border-gray-500 py-1 px-5 w-fit cursor-pointer hover:bg-green-800 font-semibold hover:border-green-800 hover:text-white transition-all ease-in"
+            >
+              Add To Cart
             </div>
             <div className="text-[14px]">
               Only{" "}
